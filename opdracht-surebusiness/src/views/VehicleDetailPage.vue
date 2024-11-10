@@ -74,6 +74,13 @@ export default {
             obj[key] = vehicle[key];
             return obj;
           }, {} as VehicleData);
+
+        // Add this vehicle to the recently viewed list
+        if (vehicleData.value) {
+          if (globalStore) {
+            globalStore.addLastViewed(vehicleData.value); // Add to recently viewed
+          }
+        }
       } catch (error) {
         console.error('Error fetching vehicle data:', error);
       }
@@ -101,7 +108,7 @@ export default {
               obj[key] = vehicleData.value[key];
             }
             return obj;
-          }, {});
+          }, {}); 
       }
       return {};
     });
@@ -125,4 +132,3 @@ export default {
   },
 };
 </script>
-

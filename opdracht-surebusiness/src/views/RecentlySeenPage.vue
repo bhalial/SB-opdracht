@@ -16,24 +16,31 @@ export default {
   setup() {
     const globalStore = inject<GlobalStore>('globalStore');
     const validatedRecentlySeen = ref<any[]>([]);
+    const isLoading = ref(true);
+
+    if (!globalStore) {
+      throw new Error("Global store is not available");
+    }
 
     const validateRecentlyViewed = async () => {
-      validatedRecentlySeen.value = [];
-      if (!globalStore) {
-        console.error('globalStore is undefined');
+      if (!globalStore.state.lastViewed.length) {
+        console.log('No recently viewed vehicles');
         return;
       }
-      for (const vehicle of globalStore.state.lastViewed) {
-        try {
-          const response = await axios.get(
-            `https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${vehicle.kenteken}`
-          );
-          if (response.data[0]) {
-            validatedRecentlySeen.value.push(response.data[0]);
-          }
-        } catch (error) {
-          console.error(`Error fetching vehicle data for ${vehicle.kenteken}:`, error);
-        }
+
+      try {
+        isLoading.value = true;
+        const requests = globalStore.state.lastViewed.map(vehicle =>
+          axios.get(`https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=${vehicle.kenteken}`)
+        );
+        const responses = await Promise.all(requests);
+        validatedRecentlySeen.value = responses
+          .filter(response => response.data[0])
+          .map(response => response.data[0]);
+      } catch (error) {
+        console.error('Error fetching vehicle data:', error);
+      } finally {
+        isLoading.value = false;
       }
     };
 
@@ -43,6 +50,7 @@ export default {
 
     return {
       validatedRecentlySeen,
+      isLoading,
     };
   },
 };
