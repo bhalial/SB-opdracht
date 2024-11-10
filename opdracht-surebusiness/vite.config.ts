@@ -10,4 +10,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'), // Set the alias for `@` to the `src` directory
     },
   },
+  build: {
+    outDir: 'dist',  // Make sure this matches your Vercel expectations
+  },
 });
