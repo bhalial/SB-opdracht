@@ -6,7 +6,12 @@ import FavoritesPage from '@/views/FavoritesPage.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: VehicleCollectionPage },
-  { path: '/vehicle/:kenteken', name: 'VehicleDetail', component: VehicleDetailPage },
+  {
+    path: '/vehicle/:kenteken',
+    name: 'VehicleDetail',
+    component: VehicleDetailPage,
+    props: true
+  },
   { path: '/recent-bekeken', name: 'RecentBekeken', component: RecentlySeenPage },
   { path: '/favorieten', name: 'Favorieten', component: FavoritesPage },
 ];
