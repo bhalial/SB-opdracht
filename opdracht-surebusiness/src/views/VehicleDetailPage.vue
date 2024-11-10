@@ -2,7 +2,7 @@
   <div class="p-6">
     <!-- Back and Add to Favorites Buttons -->
     <div class="flex space-x-4 justify-between mb-4">
-      <button @click="$router.back()" class="px-4 py-2 bg-blue-100 text-white rounded hover:bg-blue-200 text-blue-950">
+      <button @click="$router.back()" class="px-4 py-2 bg-blue-100 rounded hover:bg-blue-200 text-blue-950">
         ← Terug
       </button>
       <button 
