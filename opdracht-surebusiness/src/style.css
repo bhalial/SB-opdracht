@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease-in-out;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.container {
+  @apply xsm:max-w-full;
+}
+
+@layer components {
+  .licence-nr {
+    @apply relative flex w-full text-black bg-yellow-500 rounded-t-md font-normal font-mono text-xl leading-8 h-8 overflow-hidden pr-3;
+  }
+
+  .licence-nr:before {
+    content: "";
+    background-size: 45% auto;
+    background-image: url(../kenteken-eu-nl.svg);
+    background-repeat: no-repeat;
+    background-color: #2662a2;
+    background-position: center;
+
+    @apply mr-3 w-6 shrink-0;
+  }
+}
+
+.pagination button:first-of-type {
+  @apply rounded-l-md;
+}
+
+.pagination button:last-of-type {
+  @apply rounded-r-md;
+}
+
+.option {
+  @apply truncate max-w-[200px];
+}
