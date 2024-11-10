@@ -1,6 +1,6 @@
 {
-  "name": "AutoKnow",
-  "short_name": "AutoKnow",
+  "name": "VoertuigWijzer",
+  "short_name": "VoertuigWijzer",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
