@@ -26,7 +26,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-4">
       <div class="container mx-auto px-4 text-center">
-        <p>&copy; {{ new Date().getFullYear() }} AutoKnow.</p>
+        <p>&copy; {{ new Date().getFullYear() }} VoertuigWijzer 🚗.</p>
       </div>
     </footer>
   </div>
